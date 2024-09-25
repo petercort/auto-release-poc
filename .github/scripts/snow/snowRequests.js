@@ -1,5 +1,5 @@
-import axios from 'axios'
-import core from '@actions/core'
+const axios = require('axios')
+const core = require('@actions/core');
 
 module.exports = async() => {
   const url = `${process.env.SNOWURL}/api/sn_chg_rest/change/normal`
