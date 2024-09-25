@@ -27,14 +27,14 @@ notes: This adds a new file that's a heck of a file!
 <!-- END_CHANGELOG_FROM_1 -->
 
 <!-- BEGIN_CHANGELOG_FROM_3 -->
-### Version 1.0.0
+### Version 3.0.0
 
 #### enhancement
 
-* PR [#3](https://github.com/katiem0/auto-release-poc/pull/3) - Making a modification
+* PR [#3](https://github.com/petercort/terraform-auto-release/pull/3) - Create another-one.md
 
 ```
-- Updates in `test-file.md`
+some updates and stuff.
 ```
 <!-- END_CHANGELOG_FROM_3 -->
 
