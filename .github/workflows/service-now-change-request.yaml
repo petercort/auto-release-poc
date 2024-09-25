@@ -18,6 +18,9 @@ jobs:
           node-version: '20'
       - name: install axios
         run: npm install axios
+      - run: ls -la 
+      - run: ls -la .github/scripts
+      - run: ls -la .github/scripts/snow/
       - name: Create Change Request
         uses: actions/github-script@v7
         with: 
