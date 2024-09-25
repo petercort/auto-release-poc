@@ -16,9 +16,10 @@ module.exports = async () => {
     "requested_by": "requested_by_user_sys_id"
   }
   try {
-  const response = await axios.post(url, body, { auth })
-  console.log(`Created request: ${response.data.number.display_value}`)
-  core.setOutput('sys_id', response.data.number.sys_id.value);
+    console.log(url)
+    const response = await axios.post(url, body, { auth })
+    console.log(`Created request: ${response.data.number.display_value}`)
+    core.setOutput('sys_id', response.data.number.sys_id.value);
   } catch (error) {
     core.setFailed(error.message);
   }
