@@ -2,6 +2,18 @@
 
 <!-- BEGIN_CHANGELOG_ACTION -->
 
+<!-- BEGIN_CHANGELOG_FROM_6 -->
+### Version 3.0.0
+
+#### enhancement
+
+* PR [#6](https://github.com/petercort/terraform-auto-release/pull/6) - Update dj-khaled-no1
+
+```
+ljkl;jkhjl;kj
+```
+<!-- END_CHANGELOG_FROM_6 -->
+
 <!-- BEGIN_CHANGELOG_FROM_2 -->
 ### Version 2.0.0
 
