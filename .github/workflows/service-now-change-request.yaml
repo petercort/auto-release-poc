@@ -22,7 +22,7 @@ jobs:
         uses: actions/github-script@v7
         with: 
           script: |
-            const { createChangeRequest } = require('.github/scripts/snow/snowRequests.js')
+            const createChangeRequest = require('.github/scripts/snow/snowRequests.js')
             await createChangeRequest()
       - name: Get change request from ServiceNow
         id: get-request
@@ -31,7 +31,7 @@ jobs:
         uses: actions/github-script@v7
         with: 
           script: |
-            const { waitForApproval)  = await import('.github/scripts/snow/snowRequests.js')
+            const waitForApproval = await import('.github/scripts/snow/snowRequests.js')
             await waitForApproval()
 
       - name: Update PR with Service Now 
