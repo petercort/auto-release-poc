@@ -25,8 +25,8 @@ jobs:
         uses: actions/github-script@v7
         with: 
           script: |
-            const { createChangeRequest } = await import('.github/scripts/snow/snowRequests.js')
-            await createChangeRequest()
+            const script = require('.github/scripts/snow/snowRequests.js')
+            await script()
       - name: Get change request from ServiceNow
         id: get-request
         env:
