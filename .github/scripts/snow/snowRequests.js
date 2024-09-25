@@ -1,7 +1,7 @@
-const axios = require('axios')
-const core = require('@actions/core');
+import axios from 'axios'
+import core from '@actions/core'
 
-async function createChangeRequest() {
+export async function createChangeRequest() {
   const url = `${process.env.SNOWURL}/api/sn_chg_rest/change/normal`
   const username = process.env.SNOW_USERNAME
   const password = process.env.SNOW_PASSWORD
@@ -24,7 +24,7 @@ async function createChangeRequest() {
   }
 }
 
-async function waitForApproval() {
+export async function waitForApproval() {
   const url = `${process.env.SNOWURL}/api/sn_chg_rest/change/normal/${process.env.sys_id}`
   const username = process.env.SNOW_USERNAME
   const password = process.env.SNOW_PASSWORD
@@ -43,4 +43,3 @@ async function waitForApproval() {
     core.setFailed(error.message);
   }
 }
-module.exports = {createChangeRequest, waitForApproval}
