@@ -22,7 +22,7 @@ jobs:
         uses: actions/github-script@v7
         with: 
           script: |
-            const createChangeRequest = require('.github/scripts/snow/create-change-reqeust.js')
+            const createChangeRequest = require('.github/scripts/snow/create-change-request.js')
             await createChangeRequest()
       - name: Get change request from ServiceNow
         id: get-request
