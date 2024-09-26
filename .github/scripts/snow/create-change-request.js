@@ -3,7 +3,7 @@ const core = require('@actions/core');
 
 module.exports = async function createChangeRequest(){
   const url = `${process.env.SNOW_URL}/api/sn_chg_rest/change/normal`
-  console.log(`url is: ${url}`)
+  console.log(`url is: ${url}, ${process.env.SNOW_URL}`)
   const username = process.env.SNOW_USERNAME
   const password = process.env.SNOW_PASSWORD
   const auth = {
