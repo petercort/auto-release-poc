@@ -1,7 +1,7 @@
 const axios = require('axios')
 const core = require('@actions/core');
 
-module.exports = async () => {
+module.exports = async function waitForApproval(){
   const url = `${process.env.SNOW_URL}/api/sn_chg_rest/change/normal/${process.env.sys_id}`
   const username = process.env.SNOW_USERNAME
   const password = process.env.SNOW_PASSWORD
