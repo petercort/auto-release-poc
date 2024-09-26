@@ -1,7 +1,7 @@
 const axios = require('axios')
 const core = require('@actions/core');
 
-module.exports = async () => {
+module.exports = async function createChangeRequest(){
   const url = `${process.env.SNOWURL}/api/sn_chg_rest/change/normal`
   console.log(`url is: ${url}`)
   const username = process.env.SNOW_USERNAME
