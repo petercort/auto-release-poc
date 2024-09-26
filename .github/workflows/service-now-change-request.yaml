@@ -19,6 +19,7 @@ jobs:
       - name: install axios
         run: npm install axios @actions/core
       - name: Create Change Request
+        id: create-request
         uses: actions/github-script@v7
         with: 
           script: |
