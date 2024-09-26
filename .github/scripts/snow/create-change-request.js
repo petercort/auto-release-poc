@@ -3,7 +3,6 @@ const core = require('@actions/core');
 
 module.exports = async function createChangeRequest(){
   const url = `${process.env.SNOW_URL}/api/sn_chg_rest/change/normal`
-  console.log(`url is: ${url}, ${process.env.SNOW_URL}`)
   const username = process.env.SNOW_USERNAME
   const password = process.env.SNOW_PASSWORD
   const auth = {
@@ -17,10 +16,9 @@ module.exports = async function createChangeRequest(){
     "requested_by": "requested_by_user_sys_id"
   }
   try {
-    console.log(url)
     const response = await axios.post(url, body, { auth })
-    console.log(`Created request: ${response.data.number.display_value}`)
-    core.setOutput('sys_id', response.data.number.sys_id.value);
+    console.log(`Created request: ${response.data.result}`)
+    core.setOutput('sys_id', response.data.result.number.sys_id.value);
   } catch (error) {
     core.setFailed(error.message);
   }
