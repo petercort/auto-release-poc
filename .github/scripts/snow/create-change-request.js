@@ -17,7 +17,7 @@ module.exports = async function createChangeRequest(){
   }
   try {
     const response = await axios.post(url, body, { auth })
-    console.log(`Created request: ${response.data.result}`)
+    console.log(`Created request: ${response.data.result.sys_id.value`)
     core.setOutput('sys_id', response.data.result.sys_id.value);
   } catch (error) {
     core.setFailed(error.message);
