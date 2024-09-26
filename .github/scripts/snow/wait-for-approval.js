@@ -10,6 +10,7 @@ module.exports = async function waitForApproval(){
     password: password
   }
   try {
+    var response = await axios(url, { auth })
     while (response && response.data.result.state.value !== '3') {
       console.log(`Request state: ${response.data.result.state.display_value}`)
       await new Promise(r => setTimeout(r, 5000));
