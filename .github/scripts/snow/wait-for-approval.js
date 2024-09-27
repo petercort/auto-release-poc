@@ -1,4 +1,4 @@
-import axios from 'axios';
+const axios = require('axios')
 
 module.exports = async function waitForApproval(core) {
   const url = `${process.env.SNOW_URL}/api/sn_chg_rest/change/normal/${process.env.sys_id}`
