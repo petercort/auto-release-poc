@@ -21,7 +21,7 @@ jobs:
         uses: actions/github-script@v7
         with: 
           script: | 
-            const createChangeRequest = require('./.github/workflows/scripts/snow/create-change-request.js')
+            const createChangeRequest = require('./.github/scripts/snow/create-change-request.js')
             await createChangeRequest(core)
       - name: Wait for ServiceNow CR Approval
         id: wait-for-approval
@@ -30,7 +30,7 @@ jobs:
         uses: actions/github-script@v7
         with: 
           script: | 
-            const waitForApproval = require('./.github/workflows/scripts/snow/wait-for-approval.js')
+            const waitForApproval = require('./.github/scripts/snow/wait-for-approval.js')
             await waitForApproval(core)
       - name: Update PR with Service Now 
         uses: actions/github-script@v7
