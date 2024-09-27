@@ -1,7 +1,7 @@
 const axios = require('axios')
 
 module.exports = async function createChangeRequest(core){
-  const url = `${process.env.SNOWURL}/api/sn_chg_rest/change/normal`
+  const url = `${process.env.SNOW_URL}/api/sn_chg_rest/change/normal`
   const username = process.env.SNOW_USERNAME
   const password = process.env.SNOW_PASSWORD
   const auth = {
