@@ -1,6 +1,6 @@
 on:
   pull_request:
-    types: [opened, reopened]
+    types: [opened]
 
 jobs:
   servicenow-integration:
@@ -9,23 +9,29 @@ jobs:
       SNOW_URL: ${{ vars.SNOW_URL }}
       SNOW_USERNAME: ${{ secrets.SNOW_USERNAME }}
       SNOW_PASSWORD: ${{ secrets.SNOW_PASSWORD }}
-    steps:        
-      - name: ServiceNow DevOps Change Automation   
-        uses: ServiceNow/servicenow-devops-change@v4.1.0
-        id: create
+    steps:
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
-          devops-integration-token: ${{ secrets.SN_DEVOPS_INTEGRATION_TOKEN }}
-          instance-url: ${{ secrets.SN_INSTANCE_URL }}
-          tool-id: ${{ secrets.SN_ORCHESTRATION_TOOL_ID }}
-          context-github: ${{ toJSON(github) }}
-          job-name: 'Deploy'
-          change-request: '{"setCloseCode":"true","autoCloseChange":true,"attributes":{"short_description":"Automated Software Deployment","description":"Automated Software Deployment.","assignment_group":"a715cd759f2002002920bde8132e7018","implementation_plan":"Software update is tested and results can be found in Test Summaries Tab; When the change is approved the implementation happens automated by the CICD pipeline within the change planned start and end time window.","backout_plan":"When software fails in production, the previous software release will be re-deployed.","test_plan":"Testing if the software was successfully deployed"}}'
-          interval: '100'
-          timeout: '3600'
-          changeCreationTimeOut: '3600'
-          abortOnChangeCreationFailure: true
-          abortOnChangeStepTimeout: true
-          deployment-gate: '{"environment":"deploymentgate","jobName":"Deploy"}'
+          node-version: '20'
+      - name: install axios
+        run: npm install axios
+      - name: Create change request in ServiceNow
+        id: create-request
+        uses: actions/github-script@v7
+        with: 
+          script: | 
+            const createChangeRequest = require('./.github/workflows/scripts/snow/create-change-request.js')
+            await createChangeRequest(core)
+      - name: Wait for ServiceNow CR Approval
+        id: wait-for-approval
+        env:
+          sys_id: ${{ steps.create-request.outputs.sys_id }}
+        uses: actions/github-script@v7
+        with: 
+          script: | 
+            const waitForApproval = require('./.github/workflows/scripts/snow/wait-for-approval.js')
+            await waitForApproval(core)
       - name: Update PR with Service Now 
         uses: actions/github-script@v7
         with:
@@ -36,3 +42,5 @@ jobs:
               pull_number: context.payload.pull_request.number,
               body: 'ServiceNow Request: ${{ steps.get-request.outputs.state }}'
             })
+
+        
